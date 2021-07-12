@@ -1,6 +1,7 @@
 package com.miraeson.mini_site.repository;
 
 import com.miraeson.domain.BulletinBoard;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 
