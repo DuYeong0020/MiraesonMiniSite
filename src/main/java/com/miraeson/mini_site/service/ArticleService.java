@@ -13,9 +13,4 @@ import java.util.List;
 @RequiredArgsConstructor // 생성자 생성
 public class ArticleService{
 
-    private final ArticleRepository articleRepository;
-
-    public List<Article> lookupAllArticle() {
-        return articleRepository.findAll();
-    }
 }

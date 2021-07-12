@@ -16,14 +16,6 @@ import java.util.List;
 public class ArticleApiController {
 
 
-    private final ArticleService articleService;
-
-    @GetMapping(value = "/articles")
-    public String list(Model model) {
-        List<Article> articles = articleService.lookupAllArticle();
-        model.addAttribute("articles", articles);
-        return "articles/articlesList";
-    }
 
 
 }

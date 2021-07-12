@@ -1,0 +1,43 @@
+package com.miraeson.mini_site.service;
+
+import com.miraeson.domain.User;
+import com.miraeson.mini_site.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor // 생성자 생성
+public class UserService {
+
+
+    private final UserRepository userRepository;
+
+    // 로그인하기
+    public User createUser(User user){
+        // 이름으로 조회해서
+        List<User> findUsers = userRepository.findByName(user.getUsername());
+
+        // User의 사이즈를 측정한다.
+        int size = findUsers.size();
+
+        if(size == 0){ // row가 0이라면 신규회원
+            // db에 저장한다.
+            Long saveUserId = userRepository.save(user);
+            // 값으로 확인하여 return해준다.
+            User findUser = userRepository.findById(saveUserId);
+            return findUser;
+
+        }else{ // 만약 row가 0이 아니라면 기존 회원
+            return findUsers.get(0);
+
+        }
+
+
+
+
+    }
+
+}
