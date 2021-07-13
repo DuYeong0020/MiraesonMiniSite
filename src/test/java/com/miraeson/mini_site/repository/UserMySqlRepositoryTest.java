@@ -23,7 +23,7 @@ class UserMySqlRepositoryTest {
     @DisplayName("가입 안되어있을 때 회원가입하기")
     public void save() throws Exception {
         // given
-        User user = new User("sun", "avatar", "dudu@naver.com", 200 , 0, 0);
+        User user = new User("sun", "avatar", "dudu@naver.com", 200);
         // when
         Long saveUser = userRepository.save(user); // db에 저장한다.
 

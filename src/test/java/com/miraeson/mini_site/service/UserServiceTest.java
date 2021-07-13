@@ -25,7 +25,7 @@ class UserServiceTest {
     @DisplayName("구글 회원가입하기") @Transactional
     public void googleSignIn() throws Exception {
         // given
-        User user = new User("sun", "avatar", "dudu@naver.com", 200, 0, 0);
+        User user = new User("sun", "avatar", "dudu@naver.com", 200);
 
         // when
         User newUser = userService.createUser(user);

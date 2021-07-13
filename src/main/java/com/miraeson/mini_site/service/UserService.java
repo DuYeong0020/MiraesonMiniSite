@@ -25,7 +25,7 @@ public class UserService {
         int size = findUsers.size();
         if(size == 0){ // row가 0이라면 신규회원
             // 넘길 유저를 셋팅한다.
-            User saveUser = new User(user.getUsername(), user.getAvatar(), user.getEmail(),200, 0, 0);
+            User saveUser = new User(user.getUsername(), user.getAvatar(), user.getEmail(),200);
             // db에 저장한다.
             Long saveUserId = userRepository.save(saveUser);
             // 값으로 확인하여 return 해준다.
@@ -40,7 +40,7 @@ public class UserService {
 
     @Transactional
     public Long createAnonymous(){
-        User user = new User(100, 0,0);
+        User user = new User();
         // 익명으로 가입하기
         Long saveAnonymous = userRepository.save(user);
 
