@@ -14,6 +14,7 @@ import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
+@CrossOrigin("*")
 @RestController
 @RequiredArgsConstructor
 public class UserApiController {
