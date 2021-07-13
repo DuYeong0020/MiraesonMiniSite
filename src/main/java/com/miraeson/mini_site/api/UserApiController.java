@@ -10,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
-@CrossOrigin("*")
+
 @RestController
 @RequiredArgsConstructor
 public class UserApiController {
@@ -22,7 +24,7 @@ public class UserApiController {
 
 
     @PostMapping("/login/google")
-    public CreateUserResponse login(@RequestBody Map<String, String> list) {
+    public CreateUserResponse login(@RequestBody Map<String, String> list, HttpServletResponse response) {
         String username = list.get("username");
         String avatar = list.get("avatar");
         String email = list.get("email");
@@ -34,6 +36,9 @@ public class UserApiController {
             User loginUser = userService.createUser(user);
             return new CreateUserResponse(loginUser.getUsername(), loginUser.getAvatar(), loginUser.getEmail(), loginUser.getId().toString());
         }
+        response.setHeader("Access-Control-Allow-Origin","*");
+        response.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token");
+        response.setHeader("Access-Control-Allow-Methods","DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT");
         return new CreateUserResponse();
 
 
