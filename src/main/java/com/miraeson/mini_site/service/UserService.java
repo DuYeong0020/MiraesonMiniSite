@@ -5,6 +5,7 @@ import com.miraeson.mini_site.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -16,13 +17,11 @@ public class UserService {
     private final UserRepository userRepository;
 
     // 로그인하기
+    @Transactional
     public User createUser(User user){
         // 이름으로 조회해서
         List<User> findUsers = userRepository.findByName(user.getUsername());
-
-        // User의 사이즈를 측정한다.
         int size = findUsers.size();
-
         if(size == 0){ // row가 0이라면 신규회원
             // db에 저장한다.
             Long saveUserId = userRepository.save(user);
@@ -34,10 +33,15 @@ public class UserService {
             return findUsers.get(0);
 
         }
+    }
 
+    @Transactional
+    public Long createAnonymous(){
+        User user = new User();
+        // 익명으로 가입하기
+        Long saveAnonymous = userRepository.save(user);
 
-
-
+        return saveAnonymous;
     }
 
 }

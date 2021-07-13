@@ -3,12 +3,13 @@ package com.miraeson.mini_site.repository;
 import com.miraeson.domain.Article;
 import com.miraeson.domain.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Repository
+@Repository @Transactional
 public class UserMySqlRepository implements UserRepository {
     @PersistenceContext
     private EntityManager em;

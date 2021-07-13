@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @Table(name = "usertest")
+@Getter @Table
 @NoArgsConstructor @AllArgsConstructor
 public class User {
     @Id
