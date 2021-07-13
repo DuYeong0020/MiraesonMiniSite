@@ -1,5 +1,6 @@
 package com.miraeson.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,8 +18,9 @@ public class Article {
     private Long id; //게시글 아이디, PK
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinColumn(name="user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
 
@@ -38,11 +40,25 @@ public class Article {
 
     private Integer deleted = 0; // 게시글 삭제 여부(0:삭제안함, 1:삭제)
 
-    public Article(Long id, User user, Integer board, String title, String content) {
+    public Article(Long id, Integer board, String title, String content) {
         this.id = id;
-        this.user = user;
         this.board = board;
         this.title = title;
         this.content = content;
+    }
+
+    public Article(Integer board, String title, String content) {
+        this.board = board;
+        this.title = title;
+        this.content = content;
+    }
+    public Article(String title, String content,Long id) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
