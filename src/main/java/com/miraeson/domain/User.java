@@ -18,7 +18,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // 유저 아이디, PK
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Article> articles = new ArrayList<>();
 
 
@@ -28,7 +28,6 @@ public class User {
 
     private String email; // 회원 이메일
     private Integer social_type = 100; // 소셜 가입 종류(100:없음, 200:구글)
-
 
     private Timestamp created_time =  new Timestamp(System.currentTimeMillis()); // 계정 생성일
 

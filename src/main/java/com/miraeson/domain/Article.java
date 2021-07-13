@@ -17,35 +17,32 @@ public class Article {
     private Long id; //게시글 아이디, PK
 
 
-    @ManyToOne(fetch = FetchType.LAZY) @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     private User user;
 
 
 
-    private Integer board; // 게시판 종류(100: 자유게시판)
+    private Integer board = 100; // 게시판 종류(100: 자유게시판)
 
-    private String title; // 게시글 제목
+    private String title = ""; // 게시글 제목
 
     @Lob
     private String content; // 게시글 본문 내용
 
-    private Timestamp created_time; // 게시글 생성일
+    private Timestamp created_time = new Timestamp(System.currentTimeMillis()); // 게시글 생성일
 
-    private Timestamp updated_time; // 게시글 수정일
+    private Timestamp updated_time = new Timestamp(System.currentTimeMillis()); // 게시글 수정일
 
-    private Long views; // 게시글 조회수
+    private Long views = 0L; // 게시글 조회수
 
-    private Integer deleted; // 게시글 삭제 여부(0:삭제안함, 1:삭제)
+    private Integer deleted = 0; // 게시글 삭제 여부(0:삭제안함, 1:삭제)
 
-    public Article(User user, Integer board, String title, String content, Timestamp created_time, Timestamp updated_time, Long views, Integer deleted) {
+    public Article(Long id, User user, Integer board, String title, String content) {
+        this.id = id;
         this.user = user;
         this.board = board;
         this.title = title;
         this.content = content;
-        this.created_time = created_time;
-        this.updated_time = updated_time;
-        this.views = views;
-        this.deleted = deleted;
     }
 }

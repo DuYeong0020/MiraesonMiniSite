@@ -2,6 +2,7 @@ package com.miraeson.mini_site.repository;
 
 import com.miraeson.domain.Article;
 import com.miraeson.domain.User;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,10 +10,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
-@Repository @Transactional
+@Repository @Transactional @RequiredArgsConstructor
 public class UserMySqlRepository implements UserRepository {
     @PersistenceContext
-    private EntityManager em;
+    private final EntityManager em;
 
     // 유저 데이터를 가져와서 아이디 값 리턴하기
     @Override
