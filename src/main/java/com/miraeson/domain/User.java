@@ -22,7 +22,7 @@ public class User {
     private List<Article> articles = new ArrayList<>();
 
 
-    private String username; // 회원 닉네임
+    private String username ="익명"; // 회원 닉네임
 
     private String avatar; // 회원 아바타 이미지 링크
 
@@ -30,7 +30,7 @@ public class User {
     private Integer social_type; // 소셜 가입 종류(100:없음, 200:구글)
 
 
-    private Timestamp created_time; // 계정 생성일
+    private Timestamp created_time =  new Timestamp(System.currentTimeMillis()); // 계정 생성일
 
     private Integer admin; // 운영자 여부(0:일반 회원, 1:운영자)
 
@@ -38,13 +38,6 @@ public class User {
     private Timestamp withdraw_time; // 계정 탈퇴일
     private String memo; // 관리자용 메모
 
-    public User(Long id, String username, Timestamp created_time, Integer admin, Integer withdraw) {
-        this.id = id;
-        this.username = username;
-        this.created_time = created_time;
-        this.admin = admin;
-        this.withdraw = withdraw;
-    }
 
     public User(String username, String avatar, String email) {
         this.username = username;
@@ -52,15 +45,18 @@ public class User {
         this.email = email;
     }
 
-    public User(String username, String avatar, String email, Integer social_type, Timestamp created_time, Integer admin, Integer withdraw, Timestamp withdraw_time, String memo) {
+    public User(String username, String avatar, String email, Integer social_type, Integer admin, Integer withdraw) {
         this.username = username;
         this.avatar = avatar;
         this.email = email;
         this.social_type = social_type;
-        this.created_time = created_time;
         this.admin = admin;
         this.withdraw = withdraw;
-        this.withdraw_time = withdraw_time;
-        this.memo = memo;
+    }
+
+    public User(Integer social_type, Integer admin, Integer withdraw) {
+        this.social_type = social_type;
+        this.admin = admin;
+        this.withdraw = withdraw;
     }
 }

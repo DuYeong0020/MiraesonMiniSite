@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -23,9 +24,11 @@ public class UserService {
         List<User> findUsers = userRepository.findByName(user.getUsername());
         int size = findUsers.size();
         if(size == 0){ // row가 0이라면 신규회원
+            // 넘길 유저를 셋팅한다.
+            User saveUser = new User(user.getUsername(), user.getAvatar(), user.getEmail(),200, 0, 0);
             // db에 저장한다.
-            Long saveUserId = userRepository.save(user);
-            // 값으로 확인하여 return해준다.
+            Long saveUserId = userRepository.save(saveUser);
+            // 값으로 확인하여 return 해준다.
             User findUser = userRepository.findById(saveUserId);
             return findUser;
 
@@ -37,7 +40,7 @@ public class UserService {
 
     @Transactional
     public Long createAnonymous(){
-        User user = new User();
+        User user = new User(100, 0,0);
         // 익명으로 가입하기
         Long saveAnonymous = userRepository.save(user);
 

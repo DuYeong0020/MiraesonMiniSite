@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +23,7 @@ class UserMySqlRepositoryTest {
     @DisplayName("가입 안되어있을 때 회원가입하기")
     public void save() throws Exception {
         // given
-        User user = new User("sun", "avatar", "dudu@naver.com");
+        User user = new User("sun", "avatar", "dudu@naver.com", 200 , 0, 0);
         // when
         Long saveUser = userRepository.save(user); // db에 저장한다.
 
