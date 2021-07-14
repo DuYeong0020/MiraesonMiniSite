@@ -99,7 +99,7 @@ public class ArticleApiController {
         private String content;
         private String created_time;
         private String updated_time;
-        private String view;
+        private String views;
     }
 
 

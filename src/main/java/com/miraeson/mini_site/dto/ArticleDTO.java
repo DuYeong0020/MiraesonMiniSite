@@ -18,10 +18,10 @@ public class ArticleDTO {
     private String content;
     private Timestamp created_time;
     private Timestamp updated_time;
-    private Long view;
+    private Long views;
 
     @QueryProjection
-    public ArticleDTO(Long id, String username, Integer board, String title, String content, Timestamp created_time, Timestamp updated_time, Long view) {
+    public ArticleDTO(Long id, String username, Integer board, String title, String content, Timestamp created_time, Timestamp updated_time, Long views) {
         this.id = id;
         this.username = username;
         this.board = board;
@@ -29,6 +29,6 @@ public class ArticleDTO {
         this.content = content;
         this.created_time = created_time;
         this.updated_time = updated_time;
-        this.view = view;
+        this.views = views;
     }
 }
