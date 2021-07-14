@@ -1,9 +1,7 @@
 package com.miraeson.mini_site.api;
 
 
-import com.miraeson.domain.Article;
-import com.miraeson.domain.User;
-import com.miraeson.mini_site.repository.ArticleRepository;
+import com.miraeson.mini_site.domain.Article;
 import com.miraeson.mini_site.service.ArticleService;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -28,9 +25,7 @@ public class ArticleApiController {
     @GetMapping("/article")
     public List<Article> findAllArticle(HttpServletResponse httpServletResponse) {
         List<Article> allArticle = articleService.findAllArticle();
-        httpServletResponse.setHeader("Access-Control-Allow-Origin","*");
-        httpServletResponse.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token");
-        httpServletResponse.setHeader("Access-Control-Allow-Methods","DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT");
+
         return allArticle;
 
     }
@@ -45,9 +40,7 @@ public class ArticleApiController {
             Article article = new Article(Integer.parseInt(board), title, content);
 
             Article writeArticle = articleService.writeArticle(Long.parseLong(token), article);
-            httpServletResponse.setHeader("Access-Control-Allow-Origin","*");
-            httpServletResponse.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token");
-            httpServletResponse.setHeader("Access-Control-Allow-Methods","DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT");
+
 
             return new CreateArticleResponse(writeArticle.getUser().getId().toString(),
                     writeArticle.getTitle(), writeArticle.getBoard().toString(), writeArticle.getContent());
@@ -66,9 +59,7 @@ public class ArticleApiController {
         if(id != null){
             Article article = new Article(title, content, Long.parseLong(id));
             articleService.modifyArticle(article);
-            httpServletResponse.setHeader("Access-Control-Allow-Origin","*");
-            httpServletResponse.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token");
-            httpServletResponse.setHeader("Access-Control-Allow-Methods","DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT");
+
         }
 
         return;

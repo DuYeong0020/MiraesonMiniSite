@@ -1,7 +1,7 @@
 package com.miraeson.mini_site.repository;
 
 
-import com.miraeson.domain.User;
+import com.miraeson.mini_site.domain.User;
 
 import java.util.List;
 

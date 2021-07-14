@@ -1,8 +1,7 @@
 package com.miraeson.mini_site.repository;
 
-import com.miraeson.domain.Article;
+import com.miraeson.mini_site.domain.Article;
 
-import java.math.BigInteger;
 import java.util.List;
 
 

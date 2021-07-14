@@ -1,6 +1,6 @@
 package com.miraeson.mini_site.repository;
 
-import com.miraeson.domain.Article;
+import com.miraeson.mini_site.domain.Article;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.math.BigInteger;
 import java.util.List;
 
 @Repository  @RequiredArgsConstructor

@@ -1,13 +1,11 @@
 package com.miraeson.mini_site.service;
 
-import com.miraeson.domain.User;
+import com.miraeson.mini_site.domain.User;
 import com.miraeson.mini_site.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 @Service

@@ -1,7 +1,6 @@
 package com.miraeson.mini_site.repository;
 
-import com.miraeson.domain.Article;
-import com.miraeson.domain.User;
+import com.miraeson.mini_site.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
