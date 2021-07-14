@@ -20,8 +20,8 @@ public class UserApiController {
     private final UserService userService;
 
 
-    @PostMapping
-    public CreateUserResponse login(@RequestBody Map<String, String> list, HttpServletResponse httpServletResponse) {
+    @PostMapping("/login/google")
+    public CreateUserResponse login(@RequestBody Map<String, String> list) {
         String username = list.get("username");
         String avatar = list.get("avatar");
         String email = list.get("email");
@@ -30,8 +30,9 @@ public class UserApiController {
         if(token != null){
             User user = new User(username, avatar, email);
             // 로그인을 한다.
+
             User loginUser = userService.createUser(user);
-            return new CreateUserResponse(loginUser.getUsername(), loginUser.getAvatar(), loginUser.getEmail(), loginUser.getId().toString());
+            return new CreateUserResponse(loginUser.getUsername(), loginUser.getAvatar(), loginUser.getAdmin().toString(), loginUser.getSocial_type().toString(),loginUser.getId().toString());
         }
 
         return new CreateUserResponse();
@@ -39,7 +40,7 @@ public class UserApiController {
 
     }
     @PostMapping("/login/anony")
-    public CreateAnonyResponse login(HttpServletResponse httpServletResponse) {
+    public CreateAnonyResponse login() {
 
         Long anonymous = userService.createAnonymous();
         return new CreateAnonyResponse(anonymous.toString());
@@ -48,13 +49,15 @@ public class UserApiController {
     }
     @Data @AllArgsConstructor @NoArgsConstructor
     private static class CreateAnonyResponse{
-        private String token;
+        private String insertId;
+
     }
     @Data @AllArgsConstructor @NoArgsConstructor
     private static class CreateUserResponse{
         private String username;
         private String avatar;
-        private String email;
+        private String admin; // 추가
+        private String social_type; // 추가
         private String token;
 
 

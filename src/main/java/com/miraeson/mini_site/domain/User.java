@@ -50,4 +50,7 @@ public class User {
         this.email = email;
     }
 
+    public void setSocial_type(Integer social_type) {
+        this.social_type = social_type;
+    }
 }

@@ -60,4 +60,8 @@ public class Article {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
 }

@@ -30,4 +30,12 @@ class ArticleServiceTest {
         assertThat(writeArticle.getId()).isNotEqualTo(null);
 
     }
+    @Test
+    public void seeArticle() throws Exception {
+        // given
+        articleService.seeArticle(2L);
+        // when
+        // then
+
+    }
 }
