@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Map;
 
@@ -25,13 +26,16 @@ public class ArticleApiController {
     private final ArticleService articleService;
 
     @GetMapping("/article")
-    public List<Article> findAllArticle() {
+    public List<Article> findAllArticle(HttpServletResponse httpServletResponse) {
         List<Article> allArticle = articleService.findAllArticle();
+        httpServletResponse.setHeader("Access-Control-Allow-Origin","*");
+        httpServletResponse.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token");
+        httpServletResponse.setHeader("Access-Control-Allow-Methods","DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT");
         return allArticle;
 
     }
     @PostMapping("/article")
-    public CreateArticleResponse writeArticle(@RequestBody Map<String, String> list) {
+    public CreateArticleResponse writeArticle(@RequestBody Map<String, String> list, HttpServletResponse httpServletResponse) {
         String token = list.get("token");
         String title = list.get("title");
         String board = list.get("board");
@@ -41,6 +45,9 @@ public class ArticleApiController {
             Article article = new Article(Integer.parseInt(board), title, content);
 
             Article writeArticle = articleService.writeArticle(Long.parseLong(token), article);
+            httpServletResponse.setHeader("Access-Control-Allow-Origin","*");
+            httpServletResponse.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token");
+            httpServletResponse.setHeader("Access-Control-Allow-Methods","DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT");
 
             return new CreateArticleResponse(writeArticle.getUser().getId().toString(),
                     writeArticle.getTitle(), writeArticle.getBoard().toString(), writeArticle.getContent());
@@ -51,7 +58,7 @@ public class ArticleApiController {
 
     }
     @PutMapping("/article")
-    public void modifyArticle(@RequestBody Map<String, String> list) {
+    public void modifyArticle(@RequestBody Map<String, String> list, HttpServletResponse httpServletResponse) {
         String id = list.get("id");
         String title = list.get("title");
         String content = list.get("content");
@@ -59,6 +66,9 @@ public class ArticleApiController {
         if(id != null){
             Article article = new Article(title, content, Long.parseLong(id));
             articleService.modifyArticle(article);
+            httpServletResponse.setHeader("Access-Control-Allow-Origin","*");
+            httpServletResponse.setHeader("Access-Control-Allow-Headers","Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token");
+            httpServletResponse.setHeader("Access-Control-Allow-Methods","DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT");
         }
 
         return;
