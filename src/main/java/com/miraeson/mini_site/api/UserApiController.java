@@ -19,7 +19,7 @@ import java.util.Map;
 public class UserApiController {
     private final UserService userService;
 
-
+    // 구글로 로그인
     @PostMapping("/login/google")
     public CreateUserResponse login(@RequestBody Map<String, String> list) {
         String username = list.get("username");
@@ -39,14 +39,14 @@ public class UserApiController {
 
 
     }
+    // 익명으로 로그인
     @PostMapping("/login/anony")
     public CreateAnonyResponse login() {
 
         Long anonymous = userService.createAnonymous();
         return new CreateAnonyResponse(anonymous.toString());
-
-
     }
+
     @Data @AllArgsConstructor @NoArgsConstructor
     private static class CreateAnonyResponse{
         private String insertId;

@@ -82,6 +82,14 @@ public class ArticleMySqlRepository implements ArticleRepository  {
         return article.getId();
 
     }
+    // 삭제시 delted를 1로 수정
+    @Transactional
+    public Long updateDeleted(Article article){
+        article.setDeleted(1);
+        em.merge(article);
+
+        return article.getId();
+    }
 
 
 

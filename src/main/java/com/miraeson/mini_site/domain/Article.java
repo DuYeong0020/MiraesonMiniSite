@@ -64,4 +64,8 @@ public class Article {
     public void setViews(Long views) {
         this.views = views;
     }
+
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
+    }
 }

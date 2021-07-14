@@ -73,6 +73,14 @@ public class ArticleApiController {
         return new ArticleDTO(article.getId(), article.getUser().getUsername(),article.getBoard(), article.getTitle(),
                 article.getContent(), article.getCreated_time(), article.getUpdated_time(), article.getViews());
     }
+    // 게시글 삭제(실제로 삭제되는 것 아님)
+    @DeleteMapping("/article/{id}")
+    public void deleteArticle(@PathVariable String id) {
+        if(id != null){
+            Long deleteArticleId = articleService.deleteArticle(Long.parseLong(id));
+        }
+
+    }
 
     @Data @AllArgsConstructor @NoArgsConstructor
     private static class CreateArticleResponse{

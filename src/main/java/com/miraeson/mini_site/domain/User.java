@@ -53,4 +53,5 @@ public class User {
     public void setSocial_type(Integer social_type) {
         this.social_type = social_type;
     }
+
 }

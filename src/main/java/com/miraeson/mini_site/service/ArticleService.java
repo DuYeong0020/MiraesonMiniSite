@@ -51,6 +51,8 @@ public class ArticleService{
         articleRepository.save(modifyArticle);
 
     }
+
+    // 게시글 보기
     public Article seeArticle(Long id){
         // 게시글을 찾아서
         Article findArticle = articleRepository.findById(id);
@@ -61,7 +63,13 @@ public class ArticleService{
 
 
     }
-
+    // 게시글 삭제하기
+    public Long deleteArticle(Long id){
+        // 게시글을 찾아서
+        Article findArticle = articleRepository.findById(id);
+        Long deletedArticleId = articleRepository.updateDeleted(findArticle);
+        return deletedArticleId;
+    }
 
 
 

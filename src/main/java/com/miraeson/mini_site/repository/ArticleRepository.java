@@ -16,5 +16,10 @@ public interface ArticleRepository {
     // 모든 Article 찾기
 
     List<ArticleDTO> findAll();
+
+    // 게시글 조회수 1증가 메서드
     Long updateViews(Article article);
+
+    // 게시글 삭제 메서드
+    Long updateDeleted(Article article);
 }
