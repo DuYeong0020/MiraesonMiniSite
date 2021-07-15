@@ -34,7 +34,6 @@ public class ArticleMySqlRepository implements ArticleRepository  {
     @Transactional
     public Long save(Article article){
         if(article.getId() == null){ // 새로 게시글 작성
-            System.out.println("article = " + article);
             em.persist(article);
         }else { // 게시글 수정
             em.merge(article);

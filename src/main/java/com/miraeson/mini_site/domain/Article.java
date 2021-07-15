@@ -1,11 +1,14 @@
 package com.miraeson.mini_site.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity @Table
@@ -22,6 +25,9 @@ public class Article {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
 
 
     private Integer board = 100; // 게시판 종류(100: 자유게시판)
@@ -55,6 +61,18 @@ public class Article {
         this.id = id;
         this.title = title;
         this.content = content;
+    }
+
+    public Article(Long id, User user, Integer board, String title, String content, Timestamp created_time, Timestamp updated_time, Long views, Integer deleted) {
+        this.id = id;
+        this.user = user;
+        this.board = board;
+        this.title = title;
+        this.content = content;
+        this.created_time = created_time;
+        this.updated_time = updated_time;
+        this.views = views;
+        this.deleted = deleted;
     }
 
     public void setUser(User user) {

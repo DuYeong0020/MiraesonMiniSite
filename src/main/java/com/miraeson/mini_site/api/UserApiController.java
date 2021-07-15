@@ -20,7 +20,7 @@ public class UserApiController {
     private final UserService userService;
 
     // 구글로 로그인
-    @PostMapping("/login/google")
+    @PostMapping("login/google")
     public CreateUserResponse login(@RequestBody Map<String, String> list) {
         String username = list.get("username");
         String avatar = list.get("avatar");
@@ -40,7 +40,7 @@ public class UserApiController {
 
     }
     // 익명으로 로그인
-    @PostMapping("/login/anony")
+    @PostMapping("login/anony")
     public CreateAnonyResponse login() {
 
         Long anonymous = userService.createAnonymous();

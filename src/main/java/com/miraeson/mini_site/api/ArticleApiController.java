@@ -25,13 +25,13 @@ public class ArticleApiController {
     private final ArticleService articleService;
 
     // 모든 게시글 찾기
-    @GetMapping("/article")
+    @GetMapping("article")
     public List<ArticleDTO> findAllArticle() {
         List<ArticleDTO> allArticle = articleService.findAllArticle();
         return allArticle;
     }
     // 게시글 등록
-    @PostMapping("/article")
+    @PostMapping("article")
     public CreateArticleResponse writeArticle(@RequestBody Map<String, String> list) {
         String token = list.get("token");
         String title = list.get("title");
@@ -53,7 +53,7 @@ public class ArticleApiController {
 
     }
     // 게시글 수정
-    @PutMapping("/article")
+    @PutMapping("article")
     public void modifyArticle(@RequestBody Map<String, String> list) {
         String id = list.get("id");
         String title = list.get("title");
@@ -67,14 +67,14 @@ public class ArticleApiController {
 
     }
     // 게시글 보기 및 조회수 수정
-    @PutMapping("/article/{id}")
+    @PutMapping("article/{id}")
     public ArticleDTO seeArticle(@PathVariable String id) {
         Article article = articleService.seeArticle(Long.parseLong(id));
         return new ArticleDTO(article.getId(), article.getUser().getUsername(),article.getBoard(), article.getTitle(),
                 article.getContent(), article.getCreated_time(), article.getUpdated_time(), article.getViews());
     }
     // 게시글 삭제(실제로 삭제되는 것 아님)
-    @DeleteMapping("/article/{id}")
+    @DeleteMapping("article/{id}")
     public void deleteArticle(@PathVariable String id) {
         if(id != null){
             Long deleteArticleId = articleService.deleteArticle(Long.parseLong(id));

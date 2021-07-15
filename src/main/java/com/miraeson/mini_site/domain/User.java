@@ -22,6 +22,10 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private List<Article> articles = new ArrayList<>();
 
+    @JsonManagedReference
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    private List<Comment> comments = new ArrayList<>();
+
 
     private String username ="익명"; // 회원 닉네임
 
