@@ -40,7 +40,6 @@ public class CommentMySqlRepository implements CommentRepository {
                 .from(comment)
                 .join(comment.user, user)
                 .where(comment.article.id.eq(id))
-                .orderBy(comment.created_time.desc())
                 .fetch();
         return fetch;
     }
