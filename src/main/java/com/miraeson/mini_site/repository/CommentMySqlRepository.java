@@ -36,7 +36,7 @@ public class CommentMySqlRepository implements CommentRepository {
         QComment comment = QComment.comment;
 
 
-        List<CommentDTO> fetch = queryFactory.select(new QCommentDTO(comment.id, comment.article.id, user.id, comment.content, comment.created_time, user.username))
+        List<CommentDTO> fetch = queryFactory.select(new QCommentDTO(comment.id, comment.article.id, user.id, comment.content, comment.created_time, user.username, user.avatar))
                 .from(comment)
                 .join(comment.user, user)
                 .where(comment.article.id.eq(id))

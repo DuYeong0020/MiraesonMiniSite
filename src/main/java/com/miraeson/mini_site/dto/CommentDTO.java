@@ -15,14 +15,16 @@ public class CommentDTO {
     private String content;
     private Timestamp created_time;
     private String username;
+    private String avatar;
 
     @QueryProjection
-    public CommentDTO(Long id, Long article_id, Long user_id, String content, Timestamp created_time, String username) {
+    public CommentDTO(Long id, Long article_id, Long user_id, String content, Timestamp created_time, String username, String avatar) {
         this.id = id;
         this.article_id = article_id;
         this.user_id = user_id;
         this.content = content;
         this.created_time = created_time;
         this.username = username;
+        this.avatar = avatar;
     }
 }
